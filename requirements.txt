@@ -1,0 +1,10 @@
+# Stages 07-10 (analysis, substitution shares, scenarios, assortment MILP), tests and
+# the reproduction script. Runs on a laptop CPU; no API keys needed.
+# Tested with Python 3.13.
+numpy>=1.26
+pandas>=2.2,<3.0
+pyarrow>=16.0
+scipy>=1.11
+matplotlib>=3.8
+pulp>=2.7,<4          # validated with PuLP 3.3.2 and its bundled CBC 2.10.3; PuLP 4 is not supported
+pytest>=8.0

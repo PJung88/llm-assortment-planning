@@ -1,0 +1,16 @@
+check,value
+rows,960
+expected rows,960
+models,4
+SKUs,60
+"duplicate (model, SKU, permutation) rows",0
+missing expected ranking cells,0
+unexpected ranking cells,0
+rows with invalid candidate set,0
+invalid rankings (not an exact permutation of candidates),0
+SKU x permutation cells with candidate-order disagreement across models,0
+order 0 equals embedding top-7 order,240/240
+rankings identical to the presented order (Gemini),0
+rankings identical to the presented order (Claude),2
+rankings identical to the presented order (Qwen),0
+rankings identical to the presented order (DeepSeek),3

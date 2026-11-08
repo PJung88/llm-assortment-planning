@@ -1,0 +1,27 @@
+Stage 06 attribute verification report
+generated 2026-09-29T10:50:56
+extraction model gemini-3.6-flash, temperature 0.0, prompt 58b67efd57a3
+SKUs: 60
+
+attribute      reviewed confirmed corrected unresolv.  error rate on random sample (95% Wilson CI)
+product_type         60        60         0         0   0/60 = 0.0% [0.0%, 6.0%] (all SKUs)
+format               60        57         0         3   0/60 = 0.0% [0.0%, 6.0%] (all SKUs)
+pod_system           60        60         0         0   0/60 = 0.0% [0.0%, 6.0%] (all SKUs)
+caffeine             60        59         1         0   1/60 = 1.7% [0.3%, 8.9%] (all SKUs)
+roast                30        29         0         1   0/20 = 0.0% [0.0%, 16.1%] (random sample)
+flavored             22        22         0         0   0/20 = 0.0% [0.0%, 16.1%] (random sample)
+net_quantity         20        18         0         2   0/20 = 0.0% [0.0%, 16.1%] (random sample)
+
+Note: 'flagged'-only rows are excluded from the error-rate estimate (they were selected because they looked wrong).
+
+Keyword pass vs LLM (before review), agreement where keyword gave a definite value:
+  format       49/53
+  pod_system   58/60
+  caffeine     58/60
+  roast        50/58
+  flavored     59/60
+
+Corrections:
+  B0055ZS98K caffeine: regular -> not_stated   ("Regular Roast" = roast name; caffeine not mentioned)
+
+Non-coffee / coffee-alternative / mixed SKUs (is_coffee = False): B00N9UH9BG, B00U31J7L4, B09SJVHNMP, B0B34T13L3, B0B9CFJWNB

@@ -1,0 +1,13 @@
+source,method,smoothing,caffeine_rule,rules,dead_end,name,tests
+pooled,pl,2.0,stated_only,True,lost,main,reference version
+pooled,pl,0.5,stated_only,True,lost,smooth_light,smoothing strength (sharper shares)
+pooled,pl,8.0,stated_only,True,lost,smooth_heavy,smoothing strength (flatter shares)
+gemini-3.6-flash,pl,0.5,stated_only,True,lost,model_gemini,one model only (cross-model comparison in the OR stage)
+claude-sonnet-4-5,pl,0.5,stated_only,True,lost,model_claude,one model only (cross-model comparison in the OR stage)
+qwen3.6:27b,pl,0.5,stated_only,True,lost,model_qwen,one model only (cross-model comparison in the OR stage)
+deepseek-r1:32b,pl,0.5,stated_only,True,lost,model_deepseek,one model only (cross-model comparison in the OR stage)
+pooled,pl,2.0,unstated_caffeinated,True,lost,caffeine_unstated,'not stated' caffeine treated as caffeinated
+pooled,pl,2.0,stated_only,False,lost,no_rules,compatibility rules switched off
+pooled,pl,2.0,stated_only,True,keep,dead_end_keep,dead ends keep their LLM shares instead of losing shoppers
+pooled,points,2.0,stated_only,True,lost,points_llm,simple points rule instead of Plackett-Luce
+embedding,points,2.0,stated_only,True,lost,points_embedding,points rule on the embedding order (no LLM information)

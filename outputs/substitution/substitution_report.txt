@@ -1,0 +1,47 @@
+Stage 08 — substitution shares
+============================================================
+
+Products: 60; candidates per product: 7; variants: 12
+PL fits converged: 600/600 (max iterations 382)
+
+Main version (4 models pooled, smoothing 2 pseudo-rankings vs 16 real, rules on, dead ends lost)
+  Dead ends (no allowed candidate): 6
+    B0049U1YXY  Lavazza Club Tin (Pack of 2)
+    B07WNQT3VP  Tassimo L'Or Espresso FORTISSIMO
+    B088HQRH2P  La Colombe Cold Brew Coffee - Colombian - 42 Fluid Ounce - U
+    B08FRSJTCG  Nespresso Capsules VertuoLine, Melozio, Medium Roast Coffee,
+    B08L89NPPL  Black Rifle Coffee Ready To Drink 15 Fl Oz (Rich Mocha, 12 C
+    B09XR8J9T9  Brewed Coffee Concentrate, Cold Brew, Iced Coffee, Arabica C
+  Top substitute's share: median 65.7% (range 30.0%–100.0%)
+  Effective number of substitutes: median 1.97
+  Strength removed by the rules (went to incompatible/unverified candidates): median 8.4%, mean 20.6%
+  Products receiving no switched demand: 9
+  Largest receivers (sum of incoming shares):
+    B0BVXGGZJQ  3.16 from 9 products  Word Premium Arabica Instant Coffee - Delicio
+    B07JFLL3HC  2.89 from 8 products  Perfect Samplers Dark Roast Coffee Pods Varie
+    B01BH2B6HU  2.57 from 7 products  Iron Brew Coffee | Cerrado Gold | Full City F
+    B001ELL4RM  2.28 from 8 products  Reggie's Roast Cafe De Mundo Blend Whole Bean
+    B0B34T13L3  2.26 from 6 products  Variety Pack of Coffee, Tea, Hot Chocolate an
+
+Sanity: strength order vs plain mean-rank order (16 rankings)
+  Kendall tau: median 0.98, min 0.71
+  Same top candidate: 60/60
+  Mean |strength - observed #1 rate|: 0.076
+
+Resampling (500 draws): width of 95% range for the top substitute's share
+  median 16.5%, 90th percentile 28.6%
+
+Variants vs main  (redirected = share of switchers sent elsewhere than in main)
+  variant              dead top share eff. n redirected same #1
+  main                    6     65.7%   1.97       0.0%    100%
+  smooth_light            6     72.2%   1.69       8.2%    100%
+  smooth_heavy            6     48.4%   2.71      13.6%    100%
+  model_gemini            6     73.6%   1.71      14.4%     93%
+  model_claude            6     72.0%   1.80      14.1%     80%
+  model_qwen              6     72.5%   1.81      10.0%     91%
+  model_deepseek          6     68.8%   1.81      11.3%     85%
+  caffeine_unstated      10     67.0%   1.88       5.6%     96%
+  no_rules                0     53.9%   2.65      20.6%     89%
+  dead_end_keep           0     62.4%   1.99       0.0%    100%
+  points_llm              6     39.5%   2.94      22.3%    100%
+  points_embedding        6     50.0%   2.70      28.8%     39%

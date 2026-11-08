@@ -1,0 +1,170 @@
+Stage 10 — substitution-aware assortment experiment
+================================================================
+Python 3.13.5, numpy 2.4.1, pandas 2.3.3, PuLP 3.3.2, CBC Version: 2.10.3; seed 42
+
+CHECKS (must pass)
+  [PASS] hand: one candidate stocked, alpha=0.45: switch = alpha
+  [PASS] hand: one candidate dropped, alpha=0.45: switch 0, walk 1
+  [PASS] hand: 0.7/0.3 all stocked, alpha=0.45: switch = alpha
+  [PASS] hand: 0.7 dropped, alpha=0.45: switch = 0.3/(v0+0.3), walk rises
+  [PASS] hand: dead end dropped, alpha=0.45: all lost
+  [PASS] hand: carried SKU keeps all its demand, alpha=0.45
+  [PASS] hand: one candidate stocked, alpha=0.6: switch = alpha
+  [PASS] hand: one candidate dropped, alpha=0.6: switch 0, walk 1
+  [PASS] hand: 0.7/0.3 all stocked, alpha=0.6: switch = alpha
+  [PASS] hand: 0.7 dropped, alpha=0.6: switch = 0.3/(v0+0.3), walk rises
+  [PASS] hand: dead end dropped, alpha=0.6: all lost
+  [PASS] hand: carried SKU keeps all its demand, alpha=0.6
+  [PASS] hand: one candidate stocked, alpha=0.75: switch = alpha
+  [PASS] hand: one candidate dropped, alpha=0.75: switch 0, walk 1
+  [PASS] hand: 0.7/0.3 all stocked, alpha=0.75: switch = alpha
+  [PASS] hand: 0.7 dropped, alpha=0.75: switch = 0.3/(v0+0.3), walk rises
+  [PASS] hand: dead end dropped, alpha=0.75: all lost
+  [PASS] hand: carried SKU keeps all its demand, alpha=0.75
+  [PASS] hand: direct + switched + walk-away = total; 100% when all carried; monotone in assortment
+  [PASS] brute force = MILP on 20 random instances
+  [PASS] Stage 09 outputs present
+  [PASS] 60 unique SKUs
+  [PASS] prices positive
+  [PASS] 5 coverage groups, each with an eligible SKU
+  [PASS] is_coffee is a real boolean column
+  [PASS] 5 verified non-coffee SKUs
+  [PASS] 41 demand instances: 1 equal + 20 moderate + 20 strong
+  [PASS] exactly the 7 expected conditions
+  [PASS] pooled_pl: every focal SKU has 7 candidates in the universe, none itself
+  [PASS] pooled_pl: weights finite and non-negative
+  [PASS] pooled_pl: weights sum to 1 (or 0 for dead ends); none on disallowed arcs
+  [PASS] pooled_pl: exactly 6 zero-weight rows (dead ends)
+  [PASS] gemini_pl: every focal SKU has 7 candidates in the universe, none itself
+  [PASS] gemini_pl: weights finite and non-negative
+  [PASS] gemini_pl: weights sum to 1 (or 0 for dead ends); none on disallowed arcs
+  [PASS] gemini_pl: exactly 6 zero-weight rows (dead ends)
+  [PASS] claude_pl: every focal SKU has 7 candidates in the universe, none itself
+  [PASS] claude_pl: weights finite and non-negative
+  [PASS] claude_pl: weights sum to 1 (or 0 for dead ends); none on disallowed arcs
+  [PASS] claude_pl: exactly 6 zero-weight rows (dead ends)
+  [PASS] qwen_pl: every focal SKU has 7 candidates in the universe, none itself
+  [PASS] qwen_pl: weights finite and non-negative
+  [PASS] qwen_pl: weights sum to 1 (or 0 for dead ends); none on disallowed arcs
+  [PASS] qwen_pl: exactly 6 zero-weight rows (dead ends)
+  [PASS] deepseek_pl: every focal SKU has 7 candidates in the universe, none itself
+  [PASS] deepseek_pl: weights finite and non-negative
+  [PASS] deepseek_pl: weights sum to 1 (or 0 for dead ends); none on disallowed arcs
+  [PASS] deepseek_pl: exactly 6 zero-weight rows (dead ends)
+  [PASS] llm_points: every focal SKU has 7 candidates in the universe, none itself
+  [PASS] llm_points: weights finite and non-negative
+  [PASS] llm_points: weights sum to 1 (or 0 for dead ends); none on disallowed arcs
+  [PASS] llm_points: exactly 6 zero-weight rows (dead ends)
+  [PASS] embedding_points: every focal SKU has 7 candidates in the universe, none itself
+  [PASS] embedding_points: weights finite and non-negative
+  [PASS] embedding_points: weights sum to 1 (or 0 for dead ends); none on disallowed arcs
+  [PASS] embedding_points: exactly 6 zero-weight rows (dead ends)
+  [PASS] same allowed mask and candidate sets in all 7 conditions
+  [PASS] exactly 6 structural candidate-set dead ends
+  [PASS] 27 main scenarios = 3 shapes x alpha {0.45,0.60,0.75} x C {15,30,45}
+  [PASS] alpha = 0 references = exactly {moderate, strong} x C {15,30,45}, no duplicates
+  [PASS] central scenario = moderate, alpha 0.60, C 30
+  [PASS] main solves complete (2583 expected)
+  [PASS] no duplicate (scenario, demand, condition) rows
+  [PASS] every scenario x demand instance has all 7 conditions
+  [PASS] all main solves 'Optimal'
+  [PASS] every production row: direct + switched + walk-away = total demand (60)
+  [PASS] regret >= 0 for every assortment judged by pooled
+  [PASS] pooled regret = 0
+  [PASS] optimal retention non-decreasing in C (15 <= 30 <= 45)
+  [PASS] optimal retention non-decreasing in alpha (0.45 <= 0.60 <= 0.75)
+  [PASS] fixed assortment: retention non-decreasing in alpha
+  [PASS] cross grid: diagonal = 0
+  [PASS] cross grid: every off-diagonal regret >= 0
+  [PASS] main solves complete (2583 expected)
+  [PASS] no duplicate (scenario, demand, condition) rows
+  [PASS] every scenario x demand instance has all 7 conditions
+  [PASS] all main solves 'Optimal'
+  [PASS] alpha = 0 solves complete (120 expected)
+  [PASS] value of planning for substitution >= 0
+  [PASS] coffee-only loss >= 0 (forcing SKUs out cannot beat the pooled optimum)
+  [PASS] no-coverage optimum >= with-coverage optimum
+  [PASS] Stage 08 'main' strengths reproduce Stage 09 pooled weights
+  [PASS] smooth_light: weights sum to 1 (or 0 for that variant's dead ends)
+  [PASS] smooth_heavy: weights sum to 1 (or 0 for that variant's dead ends)
+  [PASS] no_rules: weights sum to 1 (or 0 for that variant's dead ends)
+  [PASS] caffeine_unstated: weights sum to 1 (or 0 for that variant's dead ends)
+  [PASS] dead_end_keep: every focal SKU's weights sum to 1 (dead ends keep all 7 LLM shares)
+  [PASS] appendix-variant regret >= 0 under pooled main weights
+  [PASS] no-rescaling regret >= 0
+  [PASS] bootstrap: exactly 500 resampled strength sets
+  [PASS] bootstrap: every set covers all 60 SKUs x 7 candidates, no duplicates
+  [PASS] per-instance demand checks: 82 checks over 41 instances (same 60 SKUs, positive, sum 60)
+  [PASS] per-solve gates on all 3083 solves: proven optimal, binary x, exactly C SKUs, coverage, objective = evaluator, every flow q_ij/q_i0 = evaluator share
+
+Validation: 20/20 random instances, MILP best = brute force (43 dead ends in total; alpha incl. 0; both weight conventions)
+Solves: 3083 (main 2583, alpha=0 references 120, sensitivities 380; the 2,703 in the design = main + alpha=0 references only); main-grid median 0.18 s, max 8.00 s; total 23.9 min
+
+Central scenario ({'demand_shape': 'moderate', 'alpha': 0.6, 'capacity': 30}), 20 draws, judged by pooled PL (reference, not ground truth):
+  condition          regret mean       [min, max]  products changed non-coffee
+  claude_pl                0.25% [ 0.00,  0.58]%       1.8 (0-4)        1.9
+  deepseek_pl              0.15% [ 0.00,  0.65]%       1.9 (0-5)        1.8
+  embedding_points         1.08% [ 0.31,  2.40]%       4.3 (1-8)        1.4
+  gemini_pl                0.26% [ 0.00,  0.94]%       2.4 (0-4)        1.6
+  llm_points               0.49% [ 0.00,  1.07]%       3.2 (0-6)        1.8
+  pooled_pl                0.00% [ 0.00,  0.00]%       0.0 (0-0)        1.7
+  qwen_pl                  0.15% [ 0.00,  0.44]%       1.9 (0-4)        1.6
+  'products changed' = raw SKU replacements vs the pooled assortment; retention regret is the primary metric
+  Non-reference solves differing only by exact ties (effective change 0): 0.8%
+  Draws 1-10 vs 1-20: max |change in mean regret| = 0.573 percentage points
+
+Value of planning for substitution (concentrated demand; judged by pooled):
+  moderate  α=0.45 C=15: +5.76% customers
+  moderate  α=0.45 C=30: +3.79% customers
+  moderate  α=0.45 C=45: +1.60% customers
+  moderate  α=0.60 C=15: +11.21% customers
+  moderate  α=0.60 C=30: +6.03% customers
+  moderate  α=0.60 C=45: +2.14% customers
+  moderate  α=0.75 C=15: +17.97% customers
+  moderate  α=0.75 C=30: +8.20% customers
+  moderate  α=0.75 C=45: +2.52% customers
+  strong    α=0.45 C=15: +0.99% customers
+  strong    α=0.45 C=30: +1.05% customers
+  strong    α=0.45 C=45: +0.50% customers
+  strong    α=0.60 C=15: +2.37% customers
+  strong    α=0.60 C=30: +1.87% customers
+  strong    α=0.60 C=45: +0.75% customers
+  strong    α=0.75 C=15: +4.80% customers
+  strong    α=0.75 C=30: +2.84% customers
+  strong    α=0.75 C=45: +0.96% customers
+
+Cross-evaluation (central; row = decided with, column = judged by; mean regret %):
+judged_by                 pooled_pl  gemini_pl  claude_pl  qwen_pl  deepseek_pl  llm_points  embedding_points
+decided_with \ judged_by                                                                                     
+pooled_pl                      0.00       0.28       0.25     0.17         0.19        0.43              0.85
+gemini_pl                      0.26       0.00       0.81     0.63         0.45        0.75              1.19
+claude_pl                      0.25       0.94       0.00     0.41         0.79        0.54              1.12
+qwen_pl                        0.15       0.60       0.53     0.00         0.40        0.54              1.01
+deepseek_pl                    0.15       0.51       0.66     0.32         0.00        0.48              0.85
+llm_points                     0.49       1.16       0.78     0.69         0.78        0.00              0.35
+embedding_points               1.08       1.62       1.60     1.40         1.05        0.32              0.00
+
+Coffee-only (non-coffee forced out, central): non-coffee chosen in main 1.7 per draw; retention loss 1.40% (max 5.56%)
+No coverage constraint (central demand/alpha):
+  C=15: coverage binds in 15% of draws; dropping it gains 0.061% customers
+  C=30: coverage binds in 0% of draws; dropping it gains 0.000% customers
+  C=45: coverage binds in 0% of draws; dropping it gains 0.000% customers
+Appendix variants (decided with variant, judged by pooled main):
+  caffeine_unstated  regret 0.79%, products changed 3.0
+  dead_end_keep      regret 0.94%, products changed 3.0
+  no_rules           regret 1.80%, products changed 5.2
+  smooth_heavy       regret 0.18%, products changed 2.0
+  smooth_light       regret 0.07%, products changed 1.6
+Without rescaling (all 7 conditions; judged by pooled without rescaling):
+  claude_pl          regret 0.46%, products changed 2.8
+  deepseek_pl        regret 0.26%, products changed 2.5
+  embedding_points   regret 1.44%, products changed 4.8
+  gemini_pl          regret 0.46%, products changed 3.2
+  llm_points         regret 0.86%, products changed 3.8
+  pooled_pl          regret 0.00%, products changed 0.0
+  qwen_pl            regret 0.26%, products changed 2.3
+  Pooled assortment with vs without rescaling: 2.9 products differ on average
+
+Stability (central pooled assortment under 500 resampled strength sets): median 95% range width 0.34% of retained demand
+
+Revenue columns are listing-price revenue (not profit); pack sizes differ across listings.

@@ -1,0 +1,32 @@
+Stage 09 — scenario inputs
+============================================================
+
+Coverage groups (coffee SKUs with a determined format):
+  ground           14
+  instant          10
+  pods             13
+  rtd_cold_brew     4
+  whole_bean       11
+  not counted      8  (non-coffee or undetermined format; may still be stocked)
+
+Demand instances (average SKU = 1; total demand identical in every instance, only its concentration differs). Popularity assignment seed: 42
+  equal       1 instance(s); top-20% share 20% (target 20%); max/min demand 1x
+  moderate   20 instance(s); top-20% share 40% (target 40%); max/min demand 8x
+  strong     20 instance(s); top-20% share 66% (target 66%); max/min demand 60x
+
+Substitution conditions (weights sum to 1 over allowed candidates; 0 for dead ends):
+  pooled_pl         <- main              dead ends  6  ok
+  gemini_pl         <- model_gemini      dead ends  6  ok
+  claude_pl         <- model_claude      dead ends  6  ok
+  qwen_pl           <- model_qwen        dead ends  6  ok
+  deepseek_pl       <- model_deepseek    dead ends  6  ok
+  llm_points        <- points_llm        dead ends  6  ok
+  embedding_points  <- points_embedding  dead ends  6  ok
+
+Scenario grid: 27 main scenarios + 6 alpha = 0 references (concentrated demand only)
+  alpha [0.45, 0.6, 0.75], shelf sizes [15, 30, 45], central scenario {'demand_shape': 'moderate', 'alpha': 0.6, 'capacity': 30}
+  Stage 10 solves: 2583 (main, x7 conditions) + 120 (alpha = 0) = 2703
+
+Prices: $5.99–$125.90 (median $24.02); per listing, pack sizes differ — revenue is a secondary output only.
+
+ALL CHECKS PASSED

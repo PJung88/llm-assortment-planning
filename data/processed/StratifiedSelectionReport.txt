@@ -1,0 +1,71 @@
+==========================================================================================
+STRATIFIED SELECTION REPORT
+==========================================================================================
+
+Candidate pool: 7,406 scanned, 7,376 assigned to a stratum, 30 unresolved
+
+------------------------------------------------------------------------------------------
+UNRESOLVED TITLES (needs manual assignment)
+------------------------------------------------------------------------------------------
+  Caf? Diario Heritage Line 1903, Dark Roast, 18 Count (Pack of 6)
+  Green Mountain Coffee, Double Diamond, 4.8 Ounce
+  Kirkland Signature Espresso Blend, 907g/32oz {Imported from Canada}
+  Naviera Cuban Style Dark Roasted Coffee (1 Pack (14 Oz))
+  Frizz Coffee Can
+  RITUAL CHOCOLATE Novo Coffee Chocolate Bar 60%, 2.12 OZ
+  DOVE Hot Chocolate Single Serve Freshpacks for MARS DRINKS FLAVIA Brewers, 18 Packets
+  Tassimo Costa Latte - 8 per pack (0.87lbs)
+  NutriWise - Amaretto Cappuccino | High Protein 15g Diet Hot Drink | 7/Box | Gluten Free, Keto Friendly, Low Carb, Low Calorie, Low Sugar
+  Tassimo Nabob Swiss Hazelnut Coffee 14 T-Discs (2 Pack) Imported from Canada
+  Fresh Roast SR800 Automatic Coffee Bean Roaster - Roast Coffee At Home - Variable Heat Settings - Convection Fan Control - Digital Status Display - Speed Roasting System - The Freshest Roast On Earth
+  Roasted Brown Rice Coffee Alternative (Dark Roast, 60 cup)
+  Acorn Coffee Substitute - Health Embassy - 100% Natural (100g)
+  Green Dark Magic Decaf K Cups 12 CT (Pack of 6)
+  Spelt Coffee 100 g
+  Tassimo Nabob Coffee French Vanilla, 14 T-Discs (2 Pack) {Imported from Canada}
+  Fuerte Pronto Organic Drip Coffee Bag, Italian Roast, Gusto, 11.52 Ounce (Pack of 36)
+  Selamlique's Traditional Taste Flavoured Turkish coffee (24 single serving sachets)
+  Big Easy Shrimp Gumbo (5 Units Included per Order)
+  Indulgio Cappuccino Compatible with 2.0 Brewers, Vanilla Frosted Cinnamon Bun, 12 Count (Pack of 6)
+  Alterra Donut Shop Blend Coffee
+  Tribo Coffee Single-Serve Portable Pour Over Drip Coffee - Privateer's Reserve Variety - 5 Servings (Light - Medium Roast)
+  Trombetta l'espresso Piu Crema, 10 Count (Pack of 8)
+  Stirrings, Grenadine Mixer, 6/12 Oz
+  Godiva Chocolatier Chocolate Gift Truffles, Coffee
+  Moccona Freeze-Dried Coffee 100g (Imported from Australia) (Dark Roast)
+  Chromatic Coffee - Keynote Blend
+  Yehuda Matzos - Light Whole Wheat Bran, Kosher for Passover, 10.5 Once (Pack of 6)
+  Spelt Coffee (Triticumspelta - roasted grains) - Health Embassy - 100% Natural (100g)
+  Blue Bottle Coffee - Giant Steps
+
+------------------------------------------------------------------------------------------
+PER-STRATUM PRICE TERCILE BOUNDARIES
+------------------------------------------------------------------------------------------
+  Pods / Capsules      Budget<=$22.90  Mid<=$39.99  Premium>$39.99  (pool: 2,355)
+  Instant Coffee       Budget<=$15.15  Mid<=$29.99  Premium>$29.99  (pool: 770)
+  Ground Coffee        Budget<=$14.99  Mid<=$26.97  Premium>$26.97  (pool: 2,179)
+  Whole Bean           Budget<=$17.95  Mid<=$29.99  Premium>$29.99  (pool: 1,882)
+  RTD & Cold Brew      Budget<=$14.99  Mid<=$35.99  Premium>$35.99  (pool: 190)
+
+  Global p99 length cutoff: 3,208 chars, 74 excluded as outliers
+
+------------------------------------------------------------------------------------------
+SELECTION RESULT
+------------------------------------------------------------------------------------------
+Ground Coffee        Budget               5      5             778
+Ground Coffee        Mid-Range            5      5             676
+Ground Coffee        Premium              5      5             725
+Whole Bean           Budget               5      5             645
+Whole Bean           Mid-Range            5      5             611
+Whole Bean           Premium              5      5             626
+Pods / Capsules      Budget               5      5             787
+Pods / Capsules      Mid-Range            5      5             783
+Pods / Capsules      Premium              5      5             785
+Instant Coffee       Budget               3      3             257
+Instant Coffee       Mid-Range            3      3             260
+Instant Coffee       Premium              3      3             253
+RTD & Cold Brew      Budget               2      2              63
+RTD & Cold Brew      Mid-Range            2      2              64
+RTD & Cold Brew      Premium              2      2              63
+
+Total selected: 60 / 60

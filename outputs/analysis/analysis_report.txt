@@ -1,0 +1,173 @@
+Stage 07 — ranking analysis report
+========================================
+
+Integrity
+                                                                  check   value
+                                                                   rows     960
+                                                          expected rows     960
+                                                                 models       4
+                                                                   SKUs      60
+                               duplicate (model, SKU, permutation) rows       0
+                                         missing expected ranking cells       0
+                                               unexpected ranking cells       0
+                                        rows with invalid candidate set       0
+              invalid rankings (not an exact permutation of candidates)       0
+SKU x permutation cells with candidate-order disagreement across models       0
+                                   order 0 equals embedding top-7 order 240/240
+                     rankings identical to the presented order (Gemini)       0
+                     rankings identical to the presented order (Claude)       2
+                       rankings identical to the presented order (Qwen)       0
+                   rankings identical to the presented order (DeepSeek)       3
+
+HEADLINE METRICS — estimate [95% CI], SKU bootstrap (2000 replicates, stratified by Stage 01 format group {'Whole Bean': 15, 'Ground Coffee': 15, 'Pods / Capsules': 15, 'Instant Coffee': 9, 'RTD & Cold Brew': 6})
+Bootstrap CIs quantify SKU-level sensitivity within this 60-product pilot; they are not population-level CIs for the full Amazon coffee market and do not include LLM rerun noise.
+Chance references use the same 4 rankings -> Borda pipeline on random rankings (20000 simulated SKUs); for tau and beta the reference is 0.
+Borda top-k summaries use the declared embedding-order tie-break; cross-model tie sensitivity is retained in sku_agreement.csv.
+Embedding top-1 retention is explicitly labelled fixed-tie-break; t3_embedding_baseline.csv also reports unique-top1 retention and top-boundary ties.
+
+A1 stability
+  [core]                 mean Kendall tau-b across candidate orders           Gemini       0.877  [ 0.847,  0.906]   chance 0.000
+  [core]                 share SKUs same top-1 across 4 orders                Gemini       0.800  [ 0.700,  0.900]
+  [core]                 share SKUs same top-3 set across 4 orders            Gemini       0.550  [ 0.417,  0.683]
+  [core]                 mean Kendall tau-b across candidate orders           Claude       0.676  [ 0.630,  0.716]   chance 0.000
+  [core]                 share SKUs same top-1 across 4 orders                Claude       0.500  [ 0.400,  0.617]
+  [core]                 share SKUs same top-3 set across 4 orders            Claude       0.350  [ 0.233,  0.483]
+  [core]                 mean Kendall tau-b across candidate orders           Qwen         0.563  [ 0.514,  0.612]   chance 0.000
+  [core]                 share SKUs same top-1 across 4 orders                Qwen         0.467  [ 0.367,  0.583]
+  [core]                 share SKUs same top-3 set across 4 orders            Qwen         0.217  [ 0.117,  0.317]
+  [core]                 mean Kendall tau-b across candidate orders           DeepSeek     0.473  [ 0.422,  0.519]   chance 0.000
+  [core]                 share SKUs same top-1 across 4 orders                DeepSeek     0.350  [ 0.233,  0.467]
+  [core]                 share SKUs same top-3 set across 4 orders            DeepSeek     0.183  [ 0.100,  0.283]
+A2 position bias
+  [primary]              beta: rank change per later slot                     all models   0.097  [ 0.079,  0.115]   chance 0.000
+  [secondary]            beta: rank change per later slot                     Gemini       0.037  [ 0.020,  0.056]   chance 0.000
+  [secondary]            beta: rank change per later slot                     Claude       0.091  [ 0.058,  0.123]   chance 0.000
+  [secondary]            beta: rank change per later slot                     Qwen         0.094  [ 0.063,  0.126]   chance 0.000
+  [secondary]            beta: rank change per later slot                     DeepSeek     0.164  [ 0.127,  0.203]   chance 0.000
+A3 agreement
+  [core]                 mean pairwise Kendall tau-b between models           4 models     0.647  [ 0.604,  0.690]   chance 0.000
+  [core]                 mean Kendall's W per SKU                             4 models     0.806  [ 0.771,  0.838]   chance 0.251
+  [core]                 mean pairwise top-3 Jaccard                          4 models     0.703  [ 0.656,  0.750]   chance 0.305
+  [core]                 share SKUs where all 4 models pick the same top-1    4 models     0.467  [ 0.333,  0.600]   chance 0.003
+Embedding baseline
+  [baseline]             mean tau-b vs embedding order                        Gemini       0.136  [ 0.048,  0.216]   chance 0.000
+  [baseline]             share top-1 = embedding top-1 (fixed tie-break)      Gemini       0.217  [ 0.133,  0.317]
+  [baseline]             mean tau-b vs embedding order                        Claude       0.152  [ 0.058,  0.244]   chance 0.000
+  [baseline]             share top-1 = embedding top-1 (fixed tie-break)      Claude       0.250  [ 0.150,  0.367]
+  [baseline]             mean tau-b vs embedding order                        Qwen         0.155  [ 0.070,  0.232]   chance 0.000
+  [baseline]             share top-1 = embedding top-1 (fixed tie-break)      Qwen         0.233  [ 0.133,  0.333]
+  [baseline]             mean tau-b vs embedding order                        DeepSeek     0.151  [ 0.067,  0.226]   chance 0.000
+  [baseline]             share top-1 = embedding top-1 (fixed tie-break)      DeepSeek     0.217  [ 0.117,  0.317]
+  [baseline]             mean tau-b vs embedding order                        consensus    0.160  [ 0.072,  0.242]   chance 0.000
+  [baseline]             share top-1 = embedding top-1 (fixed tie-break)      consensus    0.200  [ 0.100,  0.300]
+A4 rubric (overall)
+  [model-specific]       unforced top-1 violation rate                        Gemini       0.065  [ 0.006,  0.142]
+  [model-specific]       pairwise violation rate                              Gemini       0.079  [ 0.032,  0.138]
+  [model-specific]       unforced top-1 violation rate                        Claude       0.082  [ 0.018,  0.165]
+  [model-specific]       pairwise violation rate                              Claude       0.091  [ 0.050,  0.139]
+  [model-specific]       unforced top-1 violation rate                        Qwen         0.092  [ 0.027,  0.174]
+  [model-specific]       pairwise violation rate                              Qwen         0.126  [ 0.085,  0.170]
+  [model-specific]       unforced top-1 violation rate                        DeepSeek     0.147  [ 0.071,  0.234]
+  [model-specific]       pairwise violation rate                              DeepSeek     0.165  [ 0.112,  0.228]
+  [primary]              unforced top-1 violation rate                        all models   0.096  [ 0.039,  0.171]
+  [primary]              pairwise violation rate                              all models   0.115  [ 0.078,  0.158]
+A4 rubric (format)
+  [component diagnostic] unforced top-1 violation rate                        Gemini       0.065  [ 0.006,  0.142]
+  [component diagnostic] pairwise violation rate                              Gemini       0.113  [ 0.052,  0.182]
+  [component diagnostic] unforced top-1 violation rate                        Claude       0.082  [ 0.018,  0.165]
+  [component diagnostic] pairwise violation rate                              Claude       0.114  [ 0.063,  0.179]
+  [component diagnostic] unforced top-1 violation rate                        Qwen         0.092  [ 0.027,  0.174]
+  [component diagnostic] pairwise violation rate                              Qwen         0.153  [ 0.102,  0.211]
+  [component diagnostic] unforced top-1 violation rate                        DeepSeek     0.141  [ 0.064,  0.229]
+  [component diagnostic] pairwise violation rate                              DeepSeek     0.193  [ 0.129,  0.269]
+  [component diagnostic] unforced top-1 violation rate                        all models   0.095  [ 0.037,  0.169]
+  [component diagnostic] pairwise violation rate                              all models   0.143  [ 0.093,  0.201]
+A4 rubric (caffeine)
+  [component diagnostic] unforced top-1 violation rate                        Gemini       0.000  [ 0.000,  0.000]
+  [component diagnostic] pairwise violation rate                              Gemini       0.084  [ 0.005,  0.169]
+  [component diagnostic] unforced top-1 violation rate                        Claude       0.015  [ 0.000,  0.047]
+  [component diagnostic] pairwise violation rate                              Claude       0.182  [ 0.090,  0.303]
+  [component diagnostic] unforced top-1 violation rate                        Qwen         0.029  [ 0.000,  0.094]
+  [component diagnostic] pairwise violation rate                              Qwen         0.213  [ 0.123,  0.313]
+  [component diagnostic] unforced top-1 violation rate                        DeepSeek     0.059  [ 0.000,  0.125]
+  [component diagnostic] pairwise violation rate                              DeepSeek     0.206  [ 0.125,  0.296]
+  [component diagnostic] unforced top-1 violation rate                        all models   0.026  [ 0.000,  0.059]
+  [component diagnostic] pairwise violation rate                              all models   0.171  [ 0.101,  0.247]
+
+A2 permutation test (p = (b+1)/(N+1); smallest possible p = 1.0e-04)
+The pooled all-model test is the primary test. Four model-specific tests are secondary and use Holm-adjusted p-values.
+            model           inference_role  beta_rank_per_slot  implied_rank_gap_slot1_vs_slot7  p_value_two_sided  p_value_holm
+ gemini-3.6-flash secondary model-specific               0.037                            0.225              0.000         0.000
+claude-sonnet-4-5 secondary model-specific               0.091                            0.548              0.000         0.000
+      qwen3.6:27b secondary model-specific               0.094                            0.566              0.000         0.000
+  deepseek-r1:32b secondary model-specific               0.164                            0.985              0.000         0.000
+       all models           primary pooled               0.097                            0.581              0.000           NaN
+
+Kendall's W: 95th percentile under matched random rankings = 0.482 (descriptive reference; 58/60 SKUs above)
+
+A4 rubric compliance — primary scope: coffee sources
+Scope rule: 5 focal SKU(s) are not verified coffee; coffee sources are primary and all sources are sensitivity.
+Primary caffeine rule: conflict only when both products state caffeine.
+dimension             model  rankings_where_violation_possible  unforced_top1_violations  unforced_top1_violation_rate  pairwise_violation_rate  rankings_with_no_confirmed_compatible_candidate
+  overall  gemini-3.6-flash                                184                        12                         0.065                    0.079                                               36
+  overall claude-sonnet-4-5                                184                        15                         0.082                    0.091                                               36
+  overall       qwen3.6:27b                                184                        17                         0.092                    0.126                                               36
+  overall   deepseek-r1:32b                                184                        27                         0.147                    0.165                                               36
+  overall        all models                                736                        71                         0.096                    0.115                                              144
+   format  gemini-3.6-flash                                184                        12                         0.065                    0.113                                               36
+   format claude-sonnet-4-5                                184                        15                         0.082                    0.114                                               36
+   format       qwen3.6:27b                                184                        17                         0.092                    0.153                                               36
+   format   deepseek-r1:32b                                184                        26                         0.141                    0.193                                               36
+   format        all models                                736                        70                         0.095                    0.143                                              144
+ caffeine  gemini-3.6-flash                                 68                         0                         0.000                    0.084                                              112
+ caffeine claude-sonnet-4-5                                 68                         1                         0.015                    0.182                                              112
+ caffeine       qwen3.6:27b                                 68                         2                         0.029                    0.213                                              112
+ caffeine   deepseek-r1:32b                                 68                         4                         0.059                    0.206                                              112
+ caffeine        all models                                272                         7                         0.026                    0.171                                              448
+
+A4 caffeine-rule sensitivity (coffee sources; overall rubric and caffeine-only): unforced top-1 violation rate
+dimension             model  stated_only  unstated_caffeinated
+ caffeine        all models        0.026                 0.132
+ caffeine claude-sonnet-4-5        0.015                 0.185
+ caffeine   deepseek-r1:32b        0.059                 0.120
+ caffeine  gemini-3.6-flash        0.000                 0.074
+ caffeine       qwen3.6:27b        0.029                 0.148
+  overall        all models        0.096                 0.083
+  overall claude-sonnet-4-5        0.082                 0.101
+  overall   deepseek-r1:32b        0.147                 0.119
+  overall  gemini-3.6-flash        0.065                 0.024
+  overall       qwen3.6:27b        0.092                 0.089
+
+A4 caffeine-rule sensitivity (coffee sources; overall rubric and caffeine-only): pairwise violation rate
+dimension             model  stated_only  unstated_caffeinated
+ caffeine        all models        0.171                 0.251
+ caffeine claude-sonnet-4-5        0.182                 0.308
+ caffeine   deepseek-r1:32b        0.206                 0.246
+ caffeine  gemini-3.6-flash        0.084                 0.145
+ caffeine       qwen3.6:27b        0.213                 0.304
+  overall        all models        0.115                 0.065
+  overall claude-sonnet-4-5        0.091                 0.056
+  overall   deepseek-r1:32b        0.165                 0.104
+  overall  gemini-3.6-flash        0.079                 0.011
+  overall       qwen3.6:27b        0.126                 0.088
+
+Candidate-set compatibility counts are diagnostic only; n_compatible does NOT estimate substitution incidence or walk-away probability.
+A5 exploratory subgroup summaries (descriptive only; small cells)
+        grouping          group  n_SKUs  mean_W  mean_pairwise_tau  mean_top3_jaccard  share_all_same_top1
+       is_coffee          False       5   0.782              0.592              0.690                0.800
+       is_coffee           True      55   0.808              0.652              0.704                0.436
+compatible_group            0-1      15   0.747              0.576              0.636                0.467
+compatible_group            2-3      26   0.805              0.645              0.735                0.462
+compatible_group            4-7      19   0.854              0.707              0.711                0.474
+          format    concentrate       1   0.905              0.830              0.750                1.000
+          format         ground      15   0.809              0.630              0.724                0.400
+          format        instant      10   0.745              0.592              0.635                0.400
+          format          other       1   0.830              0.650              0.450                1.000
+          format    pod_capsule      16   0.780              0.615              0.681                0.500
+          format ready_to_drink       3   0.716              0.550              0.728                0.333
+          format   unresolvable       3   0.876              0.756              0.778                0.667
+          format     whole_bean      11   0.888              0.747              0.756                0.455
+
+Diagnostics (CSV only): sku_agreement.csv holds exact / ordered / all-16-run top-3 agreement,
+shared- and distinct-candidate counts, tie-break ranges, attributes, and candidate-set compatibility counts.
+Wrote outputs/analysis: headline_metrics.csv, rankings_aggregated.parquet (2100 rows), sku_agreement.csv, tables/ (16 CSVs), figures/ (5 PNGs)

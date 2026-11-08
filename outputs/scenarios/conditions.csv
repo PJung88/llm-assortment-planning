@@ -1,0 +1,8 @@
+condition,stage08_variant,description
+pooled_pl,main,"main: 4 LLMs pooled, Plackett-Luce (reference)"
+gemini_pl,model_gemini,"Gemini only, Plackett-Luce"
+claude_pl,model_claude,"Claude only, Plackett-Luce"
+qwen_pl,model_qwen,"Qwen only, Plackett-Luce"
+deepseek_pl,model_deepseek,"DeepSeek only, Plackett-Luce"
+llm_points,points_llm,"pooled LLM rankings, simple points rule"
+embedding_points,points_embedding,"embedding order, same points rule (no LLM)"

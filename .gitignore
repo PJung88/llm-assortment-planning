@@ -1,0 +1,23 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Full Amazon data (download separately; see data/README.md)
+data/raw/
+data/interim/
+
+# Stage 05 failed-attempt logs and local scratch
+outputs/rankings/debug/
+*.log
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
