@@ -10,7 +10,7 @@ you. This project estimates that substitution behaviour from product description
 four large language models, and feeds it into an exact optimisation model that chooses the
 shelf.
 
-**[▶ Try the interactive demo](https://llm-product-substitution.streamlit.app)** (no install needed)
+**[▶ Try the interactive demo](https://llm-shelf-planning.streamlit.app)** (no install needed)
 
 <p align="center">
   <img src="docs/images/demo_plan_the_shelf.png" width="780" alt="Demo: the optimised shelf keeps more customers than the bestseller shelf">
